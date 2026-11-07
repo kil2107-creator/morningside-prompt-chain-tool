@@ -700,6 +700,9 @@ export async function POST(
         );
     }
 
+    const generationRequestId =
+        generationRequest.id;
+
 
     /*
      * ==================================================
@@ -861,7 +864,7 @@ export async function POST(
                     )
                     .insert({
                         generation_request_id:
-                        generationRequest.id,
+                        generationRequestId,
 
                         prompt_chain_step_id:
                         step.id,
@@ -936,7 +939,7 @@ export async function POST(
                     )
                     .insert({
                         generation_request_id:
-                        generationRequest.id,
+                        generationRequestId,
 
                         prompt_chain_step_id:
                         step.id,
@@ -1193,7 +1196,7 @@ Return only the result of this step.`,
                 })
                 .eq(
                     "id",
-                    generationRequest.id
+                    generationRequestId
                 );
 
 
@@ -1245,7 +1248,7 @@ Return only the result of this step.`,
         })
         .eq(
             "id",
-            generationRequest.id
+            generationRequestId
         );
 
 
@@ -1271,7 +1274,7 @@ Return only the result of this step.`,
     return NextResponse.json({
         run: {
             id:
-            generationRequest.id,
+            generationRequestId,
 
             status:
                 "succeeded",
